@@ -1,12 +1,13 @@
 <template>
     <div>
+        <router-link to='/'> 首页home</router-link><br/>
         这是列表页list<br/>
-        <router-link to='/'> 这是首页home</router-link><br/>
-        <router-link to='/detail'> 详情页</router-link><br/>
         <ul>
             <li v-for="item in List" v-bind:key="item.id">{{item.item}}</li>
         </ul>
-        <div>{{Number}}</div>
+        <div>计算：</div>
+        <div>{{number}}</div>
+        <button @click='handleAdd()'>add</button>
     </div>
 </template>
 <script>
@@ -17,18 +18,21 @@ export default {
         return{}
     },
     computed:{
-        ...mapGetters('listData',['List','Number'])
+        ...mapGetters('listData',['List','number'])
     },
     methods:{
-        ...mapActions('listData',['getListData'])
+        //方法一：  ...mapActions('listData',['getListData','handleAdd']),
+        //方法二：
+        ...mapActions({
+            getListData:"listData/getListData",
+            handleAdd:"listData/handleAdd"
+        })
     },
     mounted(){
-        debugger;
         this.getListData();
     }
 }
 </script>
 <style>
-
 </style>
 

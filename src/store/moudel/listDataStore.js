@@ -4,7 +4,8 @@ const listData = {
     state:{
        List:[],
        count: 0,
-       compoentData:[]
+       compoentData:[],
+       number:0
     },
     actions:{
         getListData(context){
@@ -14,24 +15,23 @@ const listData = {
                 })
             })
         },
-        listComponent(context,paylod){
-            debugger;
+        handleAdd(context){
+            context.commit("handleAddState")
         }
+       
     },
     mutations:{
         ListData(state, paylod){
             state.List = paylod.listDatas
         },
-        // listComponent(state, paylod){
-        //     debugger;
-        //     state.compoentData = paylod.listdata
-        // }
-        increment: state => state.count++,
-        decrement: state => state.count--
+        handleAddState(state){
+            state.number++;
+        }
     },
     getters: {
         List: state => state.List,
         count: state => state.count,
+        number: state => state.number
     }
 }
 export default listData;
